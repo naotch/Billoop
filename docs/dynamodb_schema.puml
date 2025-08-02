@@ -1,4 +1,4 @@
-@startuml sample
+@startuml DynamoDB schema
 
 skinparam shadowing false
 skinparam linetype ortho

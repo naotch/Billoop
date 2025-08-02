@@ -1,0 +1,40 @@
+@startuml usecase
+
+    skinparam shadowing false
+    skinparam linetype ortho
+
+    actor 利用者
+
+    rectangle 認証画面 {
+        usecase "新規ユーザー登録" as  register_user
+        usecase "ログイン" as login
+    }
+
+    rectangle ホーム画面 {
+        usecase "支出履歴を確認する" as confirm_expenditure_history
+        usecase "支出可能な残高を確認する" as confirm_expenditure_balance
+        usecase "週間レポートを確認する" as confirm_weekly_report
+        usecase "月間レポートを確認する" as confirm_monthly_report
+    }
+
+    rectangle 計画作成画面 {
+        usecase "月の収入を登録する" as register_monthly_income
+        usecase "支出計画を作成する" as create_expenditure_plan
+    }
+        
+    rectangle 支出入力画面 {    
+        usecase "支出を登録する" as register_expenditure
+    }
+
+    利用者 --> register_user
+    利用者 --> login
+
+    confirm_expenditure_history .> login : <<include>>
+    confirm_expenditure_balance .> login : <<include>>
+    confirm_weekly_report .> login : <<include>>
+    confirm_monthly_report .> login : <<include>>
+    register_monthly_income .> login : <<include>>
+    create_expenditure_plan .> login : <<include>>
+    register_expenditure .> login : <<include>>
+
+@enduml
