@@ -1,0 +1,45 @@
+@startuml DynamoDB schema
+
+skinparam shadowing false
+skinparam linetype ortho
+
+' DynamoDB の Single Table Designを表現します
+' PKとSKによって一意になるデータごとにEntityとして表現しています
+
+' ユーザー基本情報を管理
+entity user_profile {
+    + PK: USER#{cognito_user_id}
+    + SK: PROFILE
+    ---
+    * user_name
+}
+
+' 支出計画を管理
+entity expenditure_plan {
+    + PK: USER#{cognito_user_id}
+    + SK: PLAN#{start_date}
+    ---
+    * monthly_income
+    * consumption_ratio
+    * extravagance_ratio
+    * investment_ratio
+}
+
+' 支出履歴を管理
+entity expenditure {
+    + PK: USER#{cognito_user_id}
+    + SK: EXPEND#{expenditure_timestamp}
+    ---
+    * expenditure_category_id: {category_id}
+    * expenditure_amount
+}
+
+' 支出分類を管理
+' マスタとして機能します
+entity expenditure_category {
+    + PK: CATEGORY#{category_id}
+    + SK: CATEGORY
+    ---
+    * category_name
+}
+@enduml
