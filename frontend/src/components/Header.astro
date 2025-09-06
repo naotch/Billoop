@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const logoSrc = '/assets/logo.svg';
+const iconHome='material-symbols:home-outline-rounded';
+const iconPlan='material-symbols:calendar-add-on-outline-rounded';
+const iconHistory='material-symbols:history';
+---
+
+<header>
+    <img class="header-logo" src={logoSrc}>
+    <nav>
+        <ul class="header-nav">
+            <li>
+                <a href=""><Icon class="icon-home" name={iconHome} /></a>
+            </li>
+            <li>
+                <a href=""><Icon class="icon-plan" name={iconPlan} /></a>
+            </li>
+            <li>
+                <a href=""><Icon class="icon-history" name={iconHistory} /></a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+    .icon-home,
+    .icon-plan,
+    .icon-history {
+        font-size: 30px;
+    }
+</style>
